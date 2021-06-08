@@ -127,7 +127,9 @@ Consultorio.prototype.addPaciente = function(paciente) {
 
 Consultorio.prototype.searchPaciente = function(paciente_nombre) {
     var result = this._paciente.filter(paciente => paciente.getNombre() === paciente_nombre)
-    return result;
+    result.forEach(e => {
+        console.log(e.toString());
+    })
 }
 
 Consultorio.prototype.showAll = function() {
@@ -138,18 +140,29 @@ Consultorio.prototype.showAll = function() {
 
 
 
-
+// Se crean 4 pacientes
 var paciente1 = new Paciente('Diego', 27, '1-9', 'Dolor de cabeza');
 var paciente2 = new Paciente('Fernando', 55, '2-8', 'Murió');
 var paciente3 = new Paciente('Marco', 18, '2-8', 'Dolor de espalda');
 var paciente4 = new Paciente('Diego', 25, '2-8', 'Dolor de Muela');
+// Se crea consultorio
 var consultorio1 = new Consultorio('Mafioletti', paciente1);
+
+//se añaden pacientes al consultorio
 consultorio1.addPaciente(paciente2);
 consultorio1.addPaciente(paciente3);
 consultorio1.addPaciente(paciente4);
 
 //MOSTRAR TODOS LOS PACIENTES
+console.log('Mostrar todos los pacientes');
 consultorio1.showAll();
+console.log("====================================");
+
+//Se modifican datos de paciente2
+paciente2.setNombre('Fabian');
+paciente2.setEdad(8);
 
 //BUSCAR POR NOMBRE
-console.log(consultorio1.searchPaciente('Diego'));
+console.log("Se busca paciente por nombre Fabian");
+consultorio1.searchPaciente('Fabian');
+console.log("====================================");
